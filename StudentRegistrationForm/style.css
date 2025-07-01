@@ -1,61 +1,103 @@
-const studentForm = document.getElementById("studentForm");
-const studentList = document.getElementById("studentList");
-const searchInput = document.getElementById("search");
-const successMsg = document.getElementById("successMsg");
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #d3cce3, #e9e4f0);
+  margin: 0;
+  padding: 20px;
+}
 
-let students = [];
+.container {
+  max-width: 650px;
+  margin: auto;
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(123, 104, 238, 0.3);
+  border: 2px solid #9370DB;
+  animation: fadeIn 1s ease-in-out;
+}
 
-studentForm.addEventListener("submit", function (e) {
-  e.preventDefault();
-  
-  const name = document.getElementById("name").value.trim();
-  const roll = document.getElementById("roll").value.trim();
-  const email = document.getElementById("email").value.trim();
-  const branch = document.getElementById("branch").value.trim();
-  const year = document.getElementById("year").value;
+h1 {
+  text-align: center;
+  color: #5e35b1;
+  margin-bottom: 25px;
+}
 
-  if (name && roll && email && branch && year) {
-    students.push({ name, roll, email, branch, year });
-    studentForm.reset();
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
 
-    // Show success message
-    successMsg.classList.remove("hidden");
-    setTimeout(() => successMsg.classList.add("hidden"), 3000);
+input, select, button {
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1.5px solid #aaa;
+  outline: none;
+  transition: all 0.3s;
+}
 
-    // Hide list until user searches
-    studentList.innerHTML = "";
-  }
-});
+input:focus, select:focus {
+  border-color: #7b1fa2;
+  box-shadow: 0 0 8px #ce93d8;
+}
 
-searchInput.addEventListener("input", function () {
-  const query = searchInput.value.toLowerCase();
-  const filtered = students.filter(s =>
-    s.name.toLowerCase().includes(query)
-  );
+button {
+  background: linear-gradient(to right, #8e24aa, #7b1fa2);
+  color: white;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
 
-  if (query === "") {
-    studentList.innerHTML = "";
-  } else {
-    displayStudents(filtered);
-  }
-});
+button:hover {
+  background: linear-gradient(to right, #7b1fa2, #6a1b9a);
+  transform: scale(1.03);
+}
 
-function displayStudents(list) {
-  studentList.innerHTML = "";
+#search {
+  margin-top: 20px;
+  width: 100%;
+  border: 2px solid #ba68c8;
+  background: #f9f3fd;
+}
 
-  if (list.length === 0) {
-    studentList.innerHTML = "<li>No student found.</li>";
-    return;
-  }
+#successMsg {
+  color: #388e3c;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 10px;
+  background-color: #e8f5e9;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #66bb6a;
+}
 
-  list.forEach((student, index) => {
-    const li = document.createElement("li");
-    li.innerHTML = `
-      ${index + 1}. <strong>${student.name}</strong><br/>
-      Roll: ${student.roll}<br/>
-      Email: ${student.email}<br/>
-      Branch: ${student.branch}, Year: ${student.year}
-    `;
-    studentList.appendChild(li);
-  });
+.hidden {
+  display: none;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 25px;
+}
+
+li {
+  background: #f3e5f5;
+  margin-top: 12px;
+  padding: 15px;
+  border-left: 6px solid #ab47bc;
+  border-radius: 10px;
+  transition: transform 0.2s;
+}
+
+li:hover {
+  background-color: #e1bee7;
+  transform: scale(1.01);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
