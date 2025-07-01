@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Registration Portal</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>🎓 Student Registration Portal</h1>
+
+    <form id="studentForm">
+      <input type="text" id="name" placeholder="Enter name" required />
+      <input type="text" id="roll" placeholder="Enter roll number" required />
+      <input type="email" id="email" placeholder="Enter email" required />
+      <input type="text" id="branch" placeholder="Enter branch" required />
+      <select id="year" required>
+        <option value="">Select year</option>
+        <option value="1st Year">1st Year</option>
+        <option value="2nd Year">2nd Year</option>
+        <option value="3rd Year">3rd Year</option>
+        <option value="4th Year">4th Year</option>
+      </select>
+      <button type="submit">Add Student</button>
+    </form>
+
+    <p id="successMsg" class="hidden">✅ Successfully Registered</p>
+
+    <input type="text" id="search" placeholder="Search student by name..." />
+
+    <ul id="studentList"></ul>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
